@@ -5,8 +5,18 @@ Test de connection
 ![img_1.png](img_1.png)
 
 
-Commandes  
+Commandes (for linux)   
     Compilation:  
         javac esp/dstib/drugmanagement/Application.java  
     Execution  
         java -cp .:mysql-connector-java-8.0.30.jar esp.dstib.drugmanagement.Application 
+
+
+
+Commandes (for windows)     
+    Compilation:  
+        javac esp/dstib/drugmanagement/Application.java  
+    Execution  
+        java -cp mysql-connector-java-8.0.30.jar;. esp.dstib.drugmanagement.Application 
+
+        

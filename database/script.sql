@@ -1,7 +1,6 @@
-DROP DATABASE drugstore;
+-- DROP DATABASE drugstore;
 CREATE DATABASE drugstore;
 USE drugstore;
-
 
 CREATE TABLE client (
     id INT AUTO_INCREMENT,

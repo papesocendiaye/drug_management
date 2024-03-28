@@ -13,7 +13,7 @@ Commandes (for linux)
 
 
 
-Commandes (for windows)     
+Commandes (for windows utilisé CMD pas PowerShell )      
     Compilation:  
         javac esp/dstib/drugmanagement/Application.java  
     Execution  

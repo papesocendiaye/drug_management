@@ -1,27 +1,16 @@
 package esp.dstib.drugmanagement;
 
-import esp.dstib.drugmanagement.config.ConnectionDB;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import esp.dstib.drugmanagement.core.EmployeManagement;
 
 public class Application {
     public static void main (String[] strings) {
-        //[TODO REMOVE THAT SHIT AND PUT IT ON HIS PLACE]
-        Connection connection = ConnectionDB.getConnection();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT  * FROM medicament");
+        EmployeManagement employeManagement = new EmployeManagement();
 
-            while ( resultSet.next() ) {
-                String intitule = resultSet.getString(2);
-                System.out.println(intitule);
-            }
+//        employeManagement.createEmploye();
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+            employeManagement.modifyEmploye();
     }
+
+
 
 }

@@ -6,7 +6,15 @@ public class Employe  {
     private String nom;
 
     // Constructeur
-    public Employe(int id, String prenom, String nom, ) {
+    public Employe() {
+    }
+    public Employe(int id, String prenom, String nom) {
+        this.id = id;
+        this.prenom = prenom;
+        this.nom = nom;
+    }
+
+    public Employe(String prenom, String nom) {
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;

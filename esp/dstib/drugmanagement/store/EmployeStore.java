@@ -1,144 +1,80 @@
 package esp.dstib.drugmanagement.store;
+import esp.dstib.drugmanagement.config.ConnectionDB;
 import esp.dstib.drugmanagement.model.Employe;
 
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeStore {
 
-    public List<Employe> getAll () throws RuntimeExeption {
-        Connection connection = ConnectionDB.getConnection();
-        if (connection == null) { //gerer ca avec exeptions
-            System.err.println("La connexion n'est pas initialisée.");
-            return 0;
-        }
-        String sql="SELECT id, prenom, nom FROM employes";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            while (resultatSet.next()) {
-                int id = resultatSet.getInt("id");
-                String prenom = resultatSet.getString("prenom");
-                String nom = resultatSet.getString("nom");
-                System.out.println("ID: " + id + ", Prénom: " + prenom + ", Nom: " + nom);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return 0;
+    private final String bdName = "employe";
+    private final Connection connection;
+    public EmployeStore () {
+        this.connection = ConnectionDB.getConnection();
     }
 
-    public Employe get (int id) {
-
-        Connection connection = ConnectionDB.getConnection();
-        if (connection == null) { //gerer ca avec exeptions
-            System.err.println("La connexion n'est pas initialisée.");
-            return 0;
+    public List<Employe> selectAll () throws Exception {
+        String sql="SELECT id, firstname, lastname FROM "+this.bdName;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        List<Employe> employes = new ArrayList<>();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String firstName = resultSet.getString("firstname");
+            String lastName = resultSet.getString("lastname");
+            Employe employe = new Employe(id, firstName, lastName);
+            employes.add(employe);
         }
-        String sql = "SELECT * FROM employes WHERE id = ?";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+        return employes;
+    }
 
-            while (resultatSet.next()) {
-                int id = resultatSet.getInt(1);
-                String prenom = resultatSet.getString(2);
-                String nom = resultatSet.getString(3);
-                System.out.println("ID: " + id + ", Prénom: " + prenom + ", Nom: " + nom);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public Employe select (int id) throws Exception {
+        String sql = "SELECT * FROM "+this.bdName+" WHERE id = "+id;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        resultSet.next();
+        String firstName = resultSet.getString("firstname");
+        String lastName = resultSet.getString("lastname");
+        return new Employe(id, firstName, lastName);
+    }
+
+    public List<Employe> selectByKey (String key, String value) throws Exception {
+        String sql = "SELECT * FROM "+this.bdName+" WHERE "+key+" like '"+value+"'";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        List<Employe> employes = new ArrayList<>();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String firstName = resultSet.getString("firstname");
+            String lastName = resultSet.getString("lastname");
+            Employe employe = new Employe(id, firstName, lastName);
+            employes.add(employe);
         }
-        return 0;
+        return employes;
     }
 
 
-    public void delete (int id) {
-        Connection connection = ConnectionDB.getConnection();
-        if (connection == null) { //gerer ca avec exeptions
-            System.err.println("La connexion n'est pas initialisée.");
-            return 0;
-        }
-        String sql = "DELETE FROM employes WHERE id = ?";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql)
-            statement.setInt(1, id);
-            int suppr = statement.executeUpdate();
-            if (suppr > 0) {
-                System.out.println("Employé avec l'ID " + id + " supprimé avec succès !");
-                return true;
-            } else {
-                System.out.println("Aucun employé trouvé avec l'ID " + id + ". Aucune suppression n'a été effectuée.");
-                return false;
-            }
-        }catch (Exception e){
-            throw new RuntimeException();
-        }
+    public void delete (int id) throws Exception {
+        String sql = "DELETE FROM "+this.bdName+" WHERE id = "+id;
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(sql);
     }
 
-    public void add () throws RuntimeException {
-        Connection connection = ConnectionDB.getConnection();
-        // Vérifier si la connexion est null
-        if (connection == null) { //gerer ca avec exeptions
-            System.err.println("La connexion n'est pas initialisée.");
-            return 0;
-        }
-        try(Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Veuillez saisir le nom de l'employé : ");
-            String nom = scanner.nextLine();
-            System.out.println("Veuillez saisir le prenom de l'employé : ");
-            String prenom = scanner.nextLine();
-            scanner.close();
-
-        }catch(Exception e) { //thow l'exception correspondante
-            e.printStackTrace();
-        }
-        // insertion
-        String sql = "INSERT INTO employes (nom, prenom) VALUES (?, ?)";
-        try {
-            PreparedStatement statement = connection.preparedStatement(sql);
-            pstmt.setString(2, nom);
-            pstmt.setString(3, prenom);
-            pstmt.executeUpdate();
-            System.out.println("Employé ajouté avec succès !");
-            return 1;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return 0;
+    public Employe insert (Employe employe) throws Exception {
+        String sql = "INSERT INTO "+this.bdName+" (firstname, lastname) VALUES ('"+employe.getPrenom()+"', '"+employe.getNom()+"')";
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        statement.executeUpdate();
+        ResultSet generatedKeys = statement.getGeneratedKeys();
+        generatedKeys.next();
+        return new Employe(generatedKeys.getInt(1), employe.getPrenom(), employe.getNom() );
     }
 
-    public Employe modify (int id, Employe employe) {
-
-        Connection connection = ConnectionDB.getConnection();
-        // Vérifier si la connexion est null
-        if (connection == null) { //gerer ca avec exeptions
-            System.err.println("La connexion n'est pas initialisée.");
-            return 0;
-        }
-        try(Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Veuillez saisir le nom de l'employé : ");
-
-            System.out.println("Veuillez saisir le prenom de l'employé : ");
-            employe.setPrenom(scanner.nextLine());
-            scanner.close();
-
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-        // insertion
-        String sql = "UPDATE employes SET nom = ?, prenom = ? WHERE id = ?";
-        try {
-            PreparedStatement statement = connection.preparedStatement(sql);
-            pstmt.setString(2, employe.getNom());
-            pstmt.setString(3, employe.getPrenom());
-            pstmt.executeUpdate();
-            System.out.println("Employé ajouté avec succès !");
-            return 1;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return 0;
+    public Employe update (Employe employe) throws Exception {
+        String sql = "UPDATE "+this.bdName+" SET lastname = '"+employe.getNom()+"', firstname = '"+employe.getPrenom()+"' WHERE id = "+employe.getId();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.executeUpdate();
+        return employe;
+    }
 
 }

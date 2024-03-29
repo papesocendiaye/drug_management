@@ -13,6 +13,11 @@ public class Drug {
         this.price = price;
         this.stock = stock;
     }
+    public Drug( int id, String title, Double price, int stock) {
+        this.title = title;
+        this.price = price;
+        this.stock = stock;
+    }
     public Drug(String title){
         this.title = title;
     }

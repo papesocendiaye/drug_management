@@ -19,19 +19,57 @@ public class DrugStore {
         connection = ConnectionDB.getConnection();
     }
 
+
     public List<Drug> getAll () throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM "+dbName);
         List<Drug> drugs = new ArrayList<>();
         while (resultSet.next()) {
-            Drug drug = new Drug();
-            drug.setTitle( resultSet.getString(2) );
-            drug.setPrice( resultSet.getDouble(3) );
-            drug.setStock( resultSet.getInt(4) );
+            
+            String name_title = resultSet.getString("title") ;
+            Double price_drug = resultSet.getDouble("price") ;
+            int stock_drug= resultSet.getInt("stock") ;
+            Drug drug = new Drug( name_title, price_drug, stock_drug);
             drugs.add(drug);
         }
         return drugs;
     }
+    public Drug insert (Drug drug) throws Exception {
+        String sql = "INSERT INTO "+this.dbName+" (title, price, stock) VALUES ('"+drug.getTitle()+"', '"+drug.getPrice()+"', '"+drug.getStock()+"')";
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        statement.executeUpdate();
+        ResultSet generatedKeys = statement.getGeneratedKeys();
+        generatedKeys.next();
+        return new Drug(drug.getTitle(), drug.getPrice() , generatedKeys.getInt(1) );
+    }
+    public Drug select (int id) throws Exception {
+        String sql = "SELECT * FROM "+this.dbName+" WHERE id = "+id;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        resultSet.next();
+        String name_title = resultSet.getString("title");
+        Double price_drug = resultSet.getDouble("price");
+        int stock_drug= resultSet.getInt("stock") ;
+        return new Drug(id, name_title, price_drug, stock_drug);
+    }
+
+    public List<Drug> selectByKey (String key, String value) throws Exception {
+        String sql = "SELECT * FROM "+this.dbName+" WHERE "+key+" like '"+value+"'";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        List<Drug> drugs = new ArrayList<>();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String name_title = resultSet.getString("title");
+            Double price_drug = resultSet.getDouble("price");
+            int stock_drug= resultSet.getInt("stock") ;
+            Drug drug = new Drug(id, name_title, price_drug, stock_drug);
+            drugs.add(drug);
+        }
+        return drugs;
+    }
+
+
 
     public Drug get (int id) {
         return null;

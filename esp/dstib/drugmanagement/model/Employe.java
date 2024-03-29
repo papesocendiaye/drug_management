@@ -15,7 +15,6 @@ public class Employe  {
     }
 
     public Employe(String prenom, String nom) {
-        this.id = id;
         this.prenom = prenom;
         this.nom = nom;
     }

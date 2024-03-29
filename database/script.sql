@@ -36,10 +36,17 @@ CREATE TABLE `order` (
 );
 
 CREATE TABLE drug (
-    id INT AUTO_INCREMENT,
-    title VARCHAR(100),
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100), 
     CONSTRAINT PK_medicament PRIMARY KEY (id)
 );
+--ajouter la colonne price a la table drug
+ALTER TABLE drug
+ADD price DECIMAL(10, 2) NOT NULL;
+--ajouter la colonne stock a la table drug
+ALTER TABLE drug
+ADD stock INT NOT NULL;
+
 
 CREATE TABLE drug_order (
     to_id_drug INT,
@@ -56,5 +63,6 @@ CREATE TABLE drug_order (
 /* INSERTS */
 INSERT INTO employe(firstname, lastname, type) VALUES ('RAMA', 'FAYE' , 'MANAGER' );
 INSERT employe (firstname, lastname) VALUES ("Socket", "Gning");
-INSERT drug (title) VALUES ("DOLIPRANE");
-INSERT INTO drug(Title) VALUES ("Paracétamol");
+INSERT drug (title, price, stock) VALUES ("DOLIPRANE", "905", "300");
+INSERT INTO drug(title, price) VALUES ("Paracétamol", "1315,00");
+

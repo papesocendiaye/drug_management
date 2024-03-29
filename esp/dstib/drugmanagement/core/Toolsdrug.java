@@ -10,6 +10,8 @@ public class Toolsdrug {
         Scanner in = new Scanner(System.in);
         System.out.print(message);
         return in.nextLine();
+        
+    
     }
 
     public static void print (String message) {
@@ -23,10 +25,10 @@ public class Toolsdrug {
         }
     }
 
-    public static void printDrugList(Drug drug) {
+    public static void printDrug(Drug drug) {
         Tools.print("Médicaments: Title: "+drug.getTitle()+" Price "+drug.getPrice()+" Stock "+drug.getStock() );
     }
-
+    
 }
 
 

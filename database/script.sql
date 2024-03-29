@@ -57,3 +57,4 @@ CREATE TABLE drug_order (
 INSERT INTO employe(firstname, lastname, type) VALUES ('RAMA', 'FAYE' , 'MANAGER' );
 INSERT employe (firstname, lastname) VALUES ("Socket", "Gning");
 INSERT drug (title) VALUES ("DOLIPRANE");
+INSERT INTO drug(Title) VALUES ("Paracétamol");

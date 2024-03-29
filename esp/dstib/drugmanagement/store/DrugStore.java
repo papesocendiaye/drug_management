@@ -1,8 +1,10 @@
 package esp.dstib.drugmanagement.store;
 import esp.dstib.drugmanagement.config.ConnectionDB;
 import esp.dstib.drugmanagement.model.Drug;
+import esp.dstib.drugmanagement.model.Employe;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,11 +40,12 @@ public class DrugStore {
     public void delete (int id) {
     }
 
-    public void add () {
-    }
+
+
 
     public Drug modify (int id, Drug drug) {
         return null;
     }
 
 }
+

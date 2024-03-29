@@ -6,6 +6,17 @@ public class Drug {
     private Double price;
     private int stock;
 
+    public Drug() {
+    }
+    public Drug(String title, Double price, int stock) {
+        this.title = title;
+        this.price = price;
+        this.stock = stock;
+    }
+    public Drug(String title){
+        this.title = title;
+    }
+    
     public String getTitle() {
         return title;
     }
@@ -30,7 +41,5 @@ public class Drug {
         this.stock = stock;
     }
 
-    public Drug() {
-    }
-
+    
 }

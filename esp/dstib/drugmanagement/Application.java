@@ -1,6 +1,5 @@
 package esp.dstib.drugmanagement;
 
-
 import esp.dstib.drugmanagement.core.DrugManagement;
 import esp.dstib.drugmanagement.core.EmployeManagement;
 import esp.dstib.drugmanagement.core.Tools;
@@ -12,21 +11,21 @@ public class Application {
        EmployeManagement employeManagement = new EmployeManagement();
 
         employeManagement.createEmploye();
-        //Tools.print("~modifier~" + "\n");
-        System.out.println ("Modifier");
+        Tools.print("~modifier~" + "\n");
+
         employeManagement.modifyEmploye();
-        //Tools.print("~supprimer~\n");
-        System.out.println ("Supprimer");
+        Tools.print("~supprimer~\n");
+        
         employeManagement.removeEmploye();
         
         
         
         //drugs test
         
-        DrugManagement  drugManagement = new DrugManagement();
-        drugManagement.createDrug();
-        //Tools.print("~supprimer~\n");
-        System.out.println ("Supprimer");
+       DrugManagement  drugManagement = new DrugManagement();
+       drugManagement.createDrug();
+        Tools.print("~supprimer~\n");
+     
         drugManagement.removeDrug();
 
        

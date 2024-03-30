@@ -1,7 +1,7 @@
 package esp.dstib.drugmanagement.model;
 
 public class Drug {
-
+    private int id;
     private String title;
     private Double price;
     private int stock;
@@ -14,14 +14,21 @@ public class Drug {
         this.stock = stock;
     }
     public Drug( int id, String title, Double price, int stock) {
+        this.id=id;
         this.title = title;
         this.price = price;
         this.stock = stock;
     }
+    
     public Drug(String title){
         this.title = title;
     }
-    
+    public  int getId(){ 
+        return this.id;
+    }
+    public void setId(int id){
+        this.id=id;
+    }
     public String getTitle() {
         return title;
     }

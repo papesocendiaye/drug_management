@@ -54,4 +54,14 @@ public class EmployeManagement {
             throw new RuntimeException(e);
         }
     }
+    public void removeEmploye() {
+        String id = Tools.input("Veuillez saisir l'identifiant de l'employé que vous souhaitez supprimer : ");
+            int idf =Integer.parseInt(id);
+            try{
+                employeStore.delete(idf);
+                Tools.print(id + " a été supprimé");
+            }catch (Exception e){
+                Tools.print("Erreur lors de la supression de "+id+".\nCause :"+e.getMessage());
+            }
+    }
 }

@@ -2,9 +2,8 @@
 
     import esp.dstib.drugmanagement.model.Drug;
     import esp.dstib.drugmanagement.store.DrugStore;
-    
     import java.util.List;
-import java.util.Scanner;
+    
     
     public class DrugManagement {
         private final DrugStore drugStore;
@@ -33,6 +32,16 @@ import java.util.Scanner;
         public void modifyDrug() {
            
              
+    }
+    public void removeDrug() {
+        String id = Tools.input("Veuillez saisir l'identifiant du medicament  que vous souhaitez supprimer : ");
+            int idd =Integer.parseInt(id);
+            try{
+                drugStore.delete(idd);
+                Tools.print(id + " a été supprimé");
+            }catch (Exception e){
+                Tools.print("Erreur lors de la supression de "+id+".\nCause :"+e.getMessage());
+            }
     }
     
 }

@@ -1,7 +1,6 @@
 package esp.dstib.drugmanagement.store;
 import esp.dstib.drugmanagement.config.ConnectionDB;
 import esp.dstib.drugmanagement.model.Drug;
-import esp.dstib.drugmanagement.model.Employe;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,19 +70,18 @@ public class DrugStore {
 
 
 
-    public Drug get (int id) {
-        return null;
+
+    public void delete (int id) throws Exception {
+        String sql = "DELETE FROM "+this.dbName+" WHERE id = "+id;
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(sql);
     }
 
-    public void delete (int id) {
+    public Drug update (Drug drug) throws Exception {
+            String sql = "UPDATE "+this.dbName+" SET title = '"+drug.getTitle()+"', price = '"+drug.getPrice()+"',stock ='"+drug.getStock()+"' WHERE id = "+drug.getId();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.executeUpdate();
+            return drug;
+
     }
-
-
-
-
-    public Drug modify (int id, Drug drug) {
-        return null;
-    }
-
 }
-

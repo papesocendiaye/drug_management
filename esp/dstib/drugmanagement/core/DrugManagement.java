@@ -13,10 +13,10 @@
     
         public Drug createDrug () {
     
-            String name_title =  Toolsdrug.input("Veuillez saisir le nom du médicament    : ");
-            String stock_ =  Toolsdrug.input("Donner le stock du médicament    : ");
+            String name_title =  Tools.input("Veuillez saisir le nom du médicament    : ");
+            String stock_ =  Tools.input("Donner le stock du médicament    : ");
             int stock_drug = Integer.parseInt(stock_);
-            String price_ =  Toolsdrug.input("Donner le prix du médicament    : ");
+            String price_ =  Tools.input("Donner le prix du médicament    : ");
             Double price_drug = Double.parseDouble(price_);
 
             Drug drug = new Drug(name_title, price_drug, stock_drug);

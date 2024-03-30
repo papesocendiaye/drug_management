@@ -12,9 +12,11 @@ public class Application {
        EmployeManagement employeManagement = new EmployeManagement();
 
         employeManagement.createEmploye();
-        Tools.print("~modifier~" + "\n");
+        //Tools.print("~modifier~" + "\n");
+        System.out.println ("Modifier");
         employeManagement.modifyEmploye();
-        Tools.print("~supprimer~\n");
+        //Tools.print("~supprimer~\n");
+        System.out.println ("Supprimer");
         employeManagement.removeEmploye();
         
         
@@ -23,7 +25,8 @@ public class Application {
         
         DrugManagement  drugManagement = new DrugManagement();
         drugManagement.createDrug();
-        Tools.print("~supprimer~\n");
+        //Tools.print("~supprimer~\n");
+        System.out.println ("Supprimer");
         drugManagement.removeDrug();
 
        

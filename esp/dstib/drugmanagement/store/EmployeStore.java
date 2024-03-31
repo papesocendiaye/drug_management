@@ -77,4 +77,21 @@ public class EmployeStore {
         return employe;
     }
 
+    public  Employe selectByKeys(int id) {
+        String sql = "SELECT * FROM " + this.bdName + " WHERE id = ?";
+        Employe employe = null;
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String firstName = resultSet.getString("firstname");
+                    String lastName = resultSet.getString("lastname");
+                    employe = new Employe(id, firstName, lastName);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employe;
+    }
 }

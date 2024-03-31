@@ -1,44 +1,58 @@
 package esp.dstib.drugmanagement.model;
+
 import java.sql.Date;
+import java.util.List;
 
 public class Order {
     private int id;
     private Date date;
-    private Double montant;
-    
+    private float amount;
+    private Client client;
+    private Employe employee; 
+    private List<DrugOrder> drugOrders;
 
     public Order() {
     }
-    public Order(int id, Date date, Double montant) {
+
+    public Order(int id, Date date, float amount, Client client, Employe employee) {
         this.id = id;
         this.date = date;
-        this.montant = montant;
+        this.amount = amount;
+        this.client = client;
+        this.employee = employee;
     }
 
-    
-    public  int getId(){ 
-        return this.id;
+    public Order(int idOrder) { //pour int int int de drugOrder
+        this.id = idOrder;
     }
-    public void setId(int id){
-        this.id=id;
-    }
-    public Date getDate() {
+
+    // Getters and setters
+    public int getId() { 
+        return id;
+        }
+    public void setId(int id) { 
+        this.id = id;
+        }
+    public  Date getDate() {
         return date;
-    }
-
-    public void setDate(Date date) {
+        }
+    public void setDate(Date date) {  
         this.date = date;
+        }
+    public float getAmount() { 
+        return amount;
+        }
+    public void setAmount(float amount){
+        this.amount=amount;
     }
-
-    public Double getMontant() {
-        return montant;
+    public Client getClient(){
+        return client;
     }
-
-    public void setMontant(Double montant) {
-        this.montant = montant;
+    public void setClient(Client c){
+       client=c;  
     }
-
-
-    
-
+    public Employe getEmployee(){
+         return employee;
+    }
+        
 }

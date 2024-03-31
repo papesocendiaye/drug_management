@@ -23,7 +23,10 @@ public class Drug {
     public Drug(String title){
         this.title = title;
     }
-    public  int getId(){ 
+    public Drug(int idDrug) { //pour int int int de drugOrder
+        this.id = idDrug;
+    }
+    public   int getId(){ 
         return this.id;
     }
     public void setId(int id){

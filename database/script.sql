@@ -36,7 +36,7 @@ CREATE TABLE `order` (
 );
 
 CREATE TABLE drug (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT ,
     title VARCHAR(100), 
     CONSTRAINT PK_medicament PRIMARY KEY (id)
 );

@@ -5,6 +5,7 @@ import esp.dstib.drugmanagement.store.EmployeStore;
 
 import java.util.List;
 
+
 public class EmployeManagement {
     private final EmployeStore employeStore;
     public EmployeManagement() {
@@ -12,8 +13,9 @@ public class EmployeManagement {
     }
 
     public Employe createEmploye () {
-        String lastName =  Tools.input("Veuillez saisir le nom de l'employé    : ");
-        String firstName = Tools.input("Veuillez saisir le prenom de l'employé : ");
+        String lastName =  Tools.inputLastname("Veuillez saisir le nom de l'employé    : ");
+        
+        String firstName = Tools.inputFirstname("Veuillez saisir le prenom de l'employé : ");
         Employe employe = new Employe(firstName, lastName);
         try {
             return this.employeStore.insert(employe);

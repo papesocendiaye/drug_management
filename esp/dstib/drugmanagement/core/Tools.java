@@ -7,12 +7,25 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Tools {
-    public static String input (String message) {
-        Scanner in = new Scanner(System.in);
-        System.out.print(message);
-        in.close();
-        return in.nextLine();
+    
+    public static String inputLastname(String message1) {
+        Tools.print(message1);
+        Scanner sc = new Scanner (System.in);
+        String lastName = sc.nextLine();
+        return lastName;
     }
+    public static String inputFirstname(String message2) {
+        Tools.print(message2);
+        Scanner sc = new Scanner (System.in);
+        String firstName = sc.nextLine();
+        return firstName;
+    }
+    public static String input(String message) {
+        Tools.print(message);
+        Scanner sc = new Scanner (System.in);
+        return sc.nextLine();
+    }
+
 
     public static void print (String message) {
         System.out.println(message);

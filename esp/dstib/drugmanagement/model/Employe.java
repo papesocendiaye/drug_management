@@ -1,9 +1,12 @@
 package esp.dstib.drugmanagement.model;
 
+import esp.dstib.drugmanagement.enums.EnumTypeEmploye;
+
 public class Employe  {
     private int id;
     private String prenom;
     private String nom;
+    private EnumTypeEmploye typeEmploye;
 
     // Constructeur
     public Employe() {
@@ -12,6 +15,15 @@ public class Employe  {
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;
+
+    }
+
+    public Employe(int id, String prenom, String nom, EnumTypeEmploye employeType) {
+        this.id = id;
+        this.prenom = prenom;
+        this.nom = nom;
+        this.typeEmploye = employeType;
+
     }
 
     public Employe(String prenom, String nom) {
@@ -30,6 +42,9 @@ public class Employe  {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+    public void setTypeEmploye(EnumTypeEmploye typeEmploye) {
+        this.typeEmploye = typeEmploye;
+    }
 
     public int getId() {
         return id;
@@ -41,6 +56,9 @@ public class Employe  {
 
     public String getPrenom() {
         return prenom;
+    }
+    public EnumTypeEmploye getTypeEmploye() {
+        return this.typeEmploye;
     }
 }
 

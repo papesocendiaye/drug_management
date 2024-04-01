@@ -1,5 +1,6 @@
 package esp.dstib.drugmanagement.store;
 import esp.dstib.drugmanagement.config.ConnectionDB;
+import esp.dstib.drugmanagement.enums.EnumTypeEmploye;
 import esp.dstib.drugmanagement.model.Employe;
 
 import java.sql.*;
@@ -24,7 +25,8 @@ public class EmployeStore {
             int id = resultSet.getInt("id");
             String firstName = resultSet.getString("firstname");
             String lastName = resultSet.getString("lastname");
-            Employe employe = new Employe(id, firstName, lastName);
+            EnumTypeEmploye typeEmploye = EnumTypeEmploye.valueOf( resultSet.getString("type") ) ;
+            Employe employe = new Employe(id, firstName, lastName, typeEmploye);
             employes.add(employe);
         }
         return employes;
@@ -37,7 +39,8 @@ public class EmployeStore {
         resultSet.next();
         String firstName = resultSet.getString("firstname");
         String lastName = resultSet.getString("lastname");
-        return new Employe(id, firstName, lastName);
+        EnumTypeEmploye typeEmploye = EnumTypeEmploye.valueOf( resultSet.getString("type") ) ;
+        return new Employe(id, firstName, lastName, typeEmploye);
     }
 
     public List<Employe> selectByKey (String key, String value) throws Exception {
@@ -49,7 +52,8 @@ public class EmployeStore {
             int id = resultSet.getInt("id");
             String firstName = resultSet.getString("firstname");
             String lastName = resultSet.getString("lastname");
-            Employe employe = new Employe(id, firstName, lastName);
+            EnumTypeEmploye typeEmploye = EnumTypeEmploye.valueOf( resultSet.getString("type") ) ;
+            Employe employe = new Employe(id, firstName, lastName, typeEmploye);
             employes.add(employe);
         }
         return employes;
@@ -95,28 +99,30 @@ public class EmployeStore {
         }
         return employe;
     }
-    public  Employe verifyEmploye (int id) {
-        Employe employe = null;
-    Scanner scanner = new Scanner(System.in);
-       System.out.print("Veuillez saisir l'ID de l'employé : ");
-       int employeId = scanner.nextInt();
-       
-       // l'employe est un manager
-       String query = "SELECT type FROM employe WHERE id = ? AND type = 'MANAGER'";
-       try (PreparedStatement statement = connection.prepareStatement(query)) {
-           statement.setInt(1, employeId);
-           ResultSet resultSet = statement.executeQuery();
-           if (resultSet.next()) {
-            String firstName = resultSet.getString("firstname");
-            String lastName = resultSet.getString("lastname");
-            employe = new Employe(id, firstName, lastName);
-        }
-           
-          
-       } catch (SQLException e) {
-           e.printStackTrace();
-       }scanner.close();
-       return employe;
-    }
+
+    //Demander à Soxna Rama (xam na si dara)
+//    public  Employe verifyEmploye (int id) {
+//        Employe employe = null;
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.print("Veuillez saisir l'ID de l'employé : ");
+//        int employeId = scanner.nextInt();
+//
+//       // l'employe est un manager
+//       String query = "SELECT type FROM employe WHERE id = ? AND type = 'MANAGER'";
+//       try (PreparedStatement statement = connection.prepareStatement(query)) {
+//           statement.setInt(1, employeId);
+//           ResultSet resultSet = statement.executeQuery();
+//           if (resultSet.next()) {
+//            String firstName = resultSet.getString("firstname");
+//            String lastName = resultSet.getString("lastname");
+//            employe = new Employe(id, firstName, lastName);
+//        }
+//
+//
+//       } catch (SQLException e) {
+//           e.printStackTrace();
+//       }scanner.close();
+//       return employe;
+//    }
    
 }

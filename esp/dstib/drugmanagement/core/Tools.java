@@ -21,7 +21,7 @@ public class Tools {
         return firstName;
     }
     public static String input(String message) {
-        Tools.print(message);
+        System.out.print(message);
         Scanner sc = new Scanner (System.in);
         return sc.nextLine();
     }

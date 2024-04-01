@@ -8,7 +8,7 @@ public class Order {
     private Date date;
     private float amount;
     private Client client;
-    private Employe employee; 
+    private Employe employe;
     private List<DrugOrder> drugOrders;
 
     public Order() {
@@ -19,7 +19,7 @@ public class Order {
         this.date = date;
         this.amount = amount;
         this.client = client;
-        this.employee = employee;
+        this.employe = employee;
     }
 
     public Order(int idOrder) { //pour int int int de drugOrder
@@ -52,7 +52,7 @@ public class Order {
        client=c;  
     }
     public Employe getEmployee(){
-         return employee;
+         return employe;
     }
         
 }

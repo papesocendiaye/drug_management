@@ -1,5 +1,4 @@
 package esp.dstib.drugmanagement.model;
-import esp.dstib.drugmanagement.model.*;
 
 public class DrugOrder {
     private Order order ;
@@ -13,8 +12,6 @@ public class DrugOrder {
         this.order = order;
         this.quantity = quantity;
     }
-    
-
 
     public DrugOrder(int idDrug, int idOrder, int quantity2) {
         

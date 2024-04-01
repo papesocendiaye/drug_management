@@ -1,9 +1,14 @@
 package esp.dstib.drugmanagement.core;
 
+import esp.dstib.drugmanagement.enums.EnumTypeEmploye;
 import esp.dstib.drugmanagement.model.Employe;
 import esp.dstib.drugmanagement.store.EmployeStore;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class EmployeManagement {
@@ -66,4 +71,14 @@ public class EmployeManagement {
                 Tools.print("Erreur lors de la supression de "+id+".\nCause :"+e.getMessage());
             }
     }
+
+
+    public boolean verifyEmploye (Employe employe) throws Exception {
+        if ( employe.getTypeEmploye() == EnumTypeEmploye.EMPLOYE ) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 }

@@ -1,5 +1,4 @@
 package esp.dstib.drugmanagement.model;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -9,11 +8,9 @@ public class Order {
     private float amount;
     private Client client;
     private Employe employe;
-    private List<DrugOrder> drugOrders;
+    private List<String> drugOrders;
 
-    public Order() {
-    }
-
+   
     public Order(int id, Date date, float amount, Client client, Employe employee) {
         this.id = id;
         this.date = date;
@@ -22,9 +19,29 @@ public class Order {
         this.employe = employee;
     }
 
+    public Order(Date date, float amount, Client client, Employe employee) {
+        this.date = date;
+        this.amount = amount;
+        this.client = client;
+        this.employe = employee;
+        
+    }
+
+    
+    public Order(int id, Date date, float amount, Client client, Employe employee, List<String> drugOrders) {
+        this.id = id;
+        this.date = date;
+        this.amount = amount;
+        this.client = client;
+        this.employe = employee;
+        this.drugOrders = drugOrders;
+    }
+
     public Order(int idOrder) { //pour int int int de drugOrder
         this.id = idOrder;
     }
+
+    
 
     // Getters and setters
     public int getId() { 
@@ -48,8 +65,8 @@ public class Order {
     public Client getClient(){
         return client;
     }
-    public void setClient(Client c){
-       client=c;  
+    public void setClient(Client client){
+       this.client=client;  
     }
     public Employe getEmployee(){
          return employe;

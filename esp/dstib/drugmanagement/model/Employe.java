@@ -18,6 +18,10 @@ public class Employe  {
 
     }
 
+    public Employe(int id){
+        this.id=id;
+    }
+    
     public Employe(int id, String prenom, String nom, EnumTypeEmploye employeType) {
         this.id = id;
         this.prenom = prenom;

@@ -1,6 +1,7 @@
 package esp.dstib.drugmanagement.core;
 
 import esp.dstib.drugmanagement.model.Employe;
+import esp.dstib.drugmanagement.model.Order;
 import esp.dstib.drugmanagement.model.Drug;
 
 import java.util.List;
@@ -52,6 +53,19 @@ public class Tools {
     public static void printDrug(Drug drug) {
         Tools.print("Médicaments: Title: "+drug.getTitle()+" Price "+drug.getPrice()+" Stock "+drug.getStock() );
     }
+
+    public static void printOrderList(List<Order>  orders) {
+        Tools.print("Date\tMontant\tClient\tEmployé\tListe Médicaments");
+        for (Order order: orders) {
+            Tools.print(order.getDate()+"\t"+order.getAmount()+"\t"+order.getClient()+"\t"+order.getEmployee());
+        }
+    }
+
+    public static void printOrder(Order order) {
+        Tools.print("Commande: :Date "+order.getDate()+" Montant "+order.getAmount()+" Client "+order.getClient()+"Employé"+order.getEmployee() );
+    }
+    
+
     
 
 }

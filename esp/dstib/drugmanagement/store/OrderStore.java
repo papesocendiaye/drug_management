@@ -29,11 +29,11 @@ public class OrderStore {
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                Date date = resultSet.getDate("date");
-                float amount = resultSet.getFloat("amount");
-                Client client = getClientById(resultSet.getInt("client"));
-                Employe employee = getEmployeeById(resultSet.getInt("to_id_employe"));
-                Order order = new Order(id, date, amount, client, employee);
+                Date date_order = resultSet.getDate("date");
+                float amount_order = resultSet.getFloat("amount");
+                Client client_order= getClientById(resultSet.getInt("client"));
+                Employe employe = getEmployeeById(resultSet.getInt("to_id_employe"));
+                Order order = new Order(id, date_order, amount_order, client_order, employe);
                 orders.add(order);
             }
         } catch (SQLException e) {
@@ -49,11 +49,11 @@ public class OrderStore {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    Date date = resultSet.getDate("date");
-                    float amount = resultSet.getFloat("amount");
-                    Client client = getClientById(resultSet.getInt("client"));
-                    Employe employee = getEmployeeById(resultSet.getInt("to_id_employe"));
-                    order = new Order(id, date, amount, client, employee);
+                    Date date_order = resultSet.getDate("date");
+                    float amount_order = resultSet.getFloat("amount");
+                    Client client_order = getClientById(resultSet.getInt("client"));
+                    Employe employe = getEmployeeById(resultSet.getInt("to_id_employe"));
+                    order = new Order(id, date_order, amount_order, client_order, employe);
                 }
             }
         } catch (SQLException e) {
@@ -108,5 +108,42 @@ public class OrderStore {
         return employeStore.selectByKeys(employeeId); 
     }
 
+    public Order select (int id) throws Exception {
+        String sql = "SELECT * FROM "+this.dbName+" WHERE id = "+id;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        resultSet.next();
+        Date date_order = resultSet.getDate("Date");
+        float amount_order = resultSet.getFloat("Montant");
+        Client client_order= (Client) resultSet.getClob("Client") ;
+        Employe employe = getEmployeeById(resultSet.getInt("to_id_employe"));
+        return new Order(id, date_order, amount_order, client_order, employe);
+    }
+
+    public List<Order> selectByKey (String key, String value) throws Exception {
+        String sql = "SELECT * FROM "+this.dbName+" WHERE "+key+" like '"+value+"'";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        List<Order> orders = new ArrayList<>();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            Date date_order = resultSet.getDate("Date");
+            float amount_order = resultSet.getFloat("Montant");
+            Client client_order= (Client) resultSet.getClob("Client") ;
+            Employe employe_order = (Employe) resultSet.getClob("Employé");
+            //List<String> drugOrders = (List<String>) resultSet.getClob("Liste des médicaments");
+            Order order = new Order(id, date_order, amount_order, client_order, employe_order);
+            orders.add(order);
+        }
+        return orders;
+    }
+    public void delete (int id) throws Exception {
+        String sql = "DELETE FROM "+this.dbName+" WHERE id = "+id;
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(sql);
+    }
+        
+    }
+
    
-}
+

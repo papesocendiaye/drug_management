@@ -65,7 +65,7 @@ import java.util.List;
             Tools.print( "4 - Employé" );
             Tools.print( "5 - Les quatre " );
             String choice = Tools.input("Choix: ");
-            switch (choice) {
+            switch (choice)  {
                 case "1":
                     String newDate_order = Tools.input("Veuillez saisir la nouvelle date: ");
                     Date date_order_ = (Date) new SimpleDateFormat("jj/mm/aaaa").parse(newDate_order);

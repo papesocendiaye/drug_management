@@ -1,8 +1,7 @@
-    package esp.dstib.drugmanagement.core;
-
-    import esp.dstib.drugmanagement.model.Drug;
+package esp.dstib.drugmanagement.core;
+import esp.dstib.drugmanagement.model.Drug;
 import esp.dstib.drugmanagement.store.DrugStore;
-    import java.util.List;
+import java.util.List;
     
     
     public class DrugManagement {

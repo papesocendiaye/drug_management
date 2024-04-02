@@ -1,5 +1,8 @@
 package esp.dstib.drugmanagement.core;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 963b51931cc465242ce2557035b315ef4f6d69d3
 import esp.dstib.drugmanagement.model.Drug;
 import esp.dstib.drugmanagement.store.DrugStore;
 import java.util.List;

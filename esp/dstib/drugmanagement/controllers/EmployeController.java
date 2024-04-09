@@ -1,11 +1,12 @@
 package esp.dstib.drugmanagement.controllers;
+import java.text.ParseException;
 import esp.dstib.drugmanagement.core.OrderManagement;
 import esp.dstib.drugmanagement.menus.MenuEmploye;
 public class EmployeController {
 
     private final static MenuEmploye menuEmploye = new MenuEmploye();
     private final static OrderManagement orderManagement = new OrderManagement();
-    public static void manage () {
+    public static void manage () throws ParseException {
         boolean isLoged = true;
         while (isLoged) {
             

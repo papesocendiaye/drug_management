@@ -32,15 +32,7 @@ import java.util.List;
             String employe_ =  Tools.input("L'id de l'employé   : ");
             int employe_id = Integer.parseInt(employe_);
             Employe employe =  new Employe(employe_id);
-            /*String employe_prenom =  Tools.input("Le prénom de l'employé   : ");
-            String employe_nom =  Tools.input("Le nom de l'employé   : ");
-            String employe_type =  Tools.input("Le type de l'employé   : ");
-            EnumTypeEmploye enumTypeEmploye = EnumTypeEmploye.valueOf(employe_type);
-            Employe employe =  new Employe(employe_id, employe_prenom, employe_nom, enumTypeEmploye);
-            String drugOrders_ =  Tools.input("La liste des medicaments  : ");
-            List<DrugOrder> drugorder = new ArrayList<>(List.of(drugOrders_));
-            List<String> drugOrders = List.of(drugOrders_.split(","));
-            */
+          
             Order order = new Order(date_order, amount_order, client_order, employe);
             try {
                 return this.orderStore.insert(order);

@@ -7,6 +7,7 @@ public class Employe  {
     private String prenom;
     private String nom;
     private EnumTypeEmploye typeEmploye;
+    private Credencial credencial;
 
     // Constructeur
     public Employe() {
@@ -29,6 +30,9 @@ public class Employe  {
         this.typeEmploye = employeType;
 
     }
+    public Employe (Credencial credencial){
+        this.credencial = credencial;
+    }
 
     public Employe(String prenom, String nom) {
         this.prenom = prenom;
@@ -38,7 +42,9 @@ public class Employe  {
     public void setId(int id) {
         this.id = id;
     }
-
+    public void setCredencial(Credencial credencial){
+        this.credencial = credencial;
+    }
     public void setNom(String nom) {
         this.nom = nom;
     }

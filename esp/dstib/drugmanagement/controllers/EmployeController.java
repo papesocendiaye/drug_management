@@ -14,6 +14,7 @@ public class EmployeController {
             switch (choice) {
                 case 1:
                     orderManagement.createOrder();
+                    
                     break;
                 case 2:
                     orderManagement.modifyOrder();

@@ -2,6 +2,7 @@ package esp.dstib.drugmanagement.core;
 
 import esp.dstib.drugmanagement.model.Employe;
 import esp.dstib.drugmanagement.model.Order;
+import esp.dstib.drugmanagement.model.Credencial;
 import esp.dstib.drugmanagement.model.Drug;
 
 import java.util.List;
@@ -43,9 +44,18 @@ public class Tools {
             Tools.print(employe.getId()+"\t"+employe.getPrenom()+"\t"+employe.getNom());
         }
     }
+    public static void printCredencialList(List<Credencial>  credencials) {
+        Tools.print("ID\tlogin(s)\tpassword");
+        for (Credencial credencial: credencials) {
+            Tools.print(credencial.getId()+"\t"+credencial.getLogin()+"\t"+credencial.getPassword());
+        }
+    }
 
     public static void printEmploye(Employe  employe) {
         Tools.print("Employé: ID: "+employe.getId()+" Prénom(s) "+employe.getPrenom()+" Nom "+employe.getNom() );
+    }
+    public static void printCredencial(Credencial  credencial) {
+        Tools.print("identifiants: ID: "+credencial.getId()+" login(s) "+credencial.getLogin()+" password "+credencial.getPassword() );
     }
 
     public static void printDrugList(List<Drug>  drugs) {

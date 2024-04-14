@@ -1,6 +1,4 @@
 package esp.dstib.drugmanagement.core;
-
-import esp.dstib.drugmanagement.enums.EnumTypeEmploye;
 import esp.dstib.drugmanagement.model.Employe;
 import esp.dstib.drugmanagement.store.EmployeStore;
 import java.util.List;
@@ -68,12 +66,6 @@ public class EmployeManagement {
     }
 
 
-    public boolean verifyEmploye (Employe employe) throws Exception {
-        if ( employe.getTypeEmploye() == EnumTypeEmploye.EMPLOYE ) {
-            return true;
-        }else {
-            return false;
-        }
-    }
+   
 
 }

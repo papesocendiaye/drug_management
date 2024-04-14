@@ -9,7 +9,7 @@ public class MenuEmploye {
         Tools.print("1 - Ajouter une commande");
         Tools.print("2 - Modifier une commande");
         Tools.print("3 - Supprimer une commande");
-        Tools.print("4 - Retour");
+        Tools.print("4 - quitter");
         return Integer.parseInt( Tools.input(">") ) ;
     }
 

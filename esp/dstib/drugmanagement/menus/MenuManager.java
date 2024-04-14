@@ -9,7 +9,7 @@ public class MenuManager {
         Tools.print("1 - Ajouter un employé");
         Tools.print("2 - Modifier un employé");
         Tools.print("3 - Supprimer un employé");
-        Tools.print("4 - Retour");
+        Tools.print("4 - quitter");
         return Integer.parseInt( Tools.input(">") ) ;
     }
 

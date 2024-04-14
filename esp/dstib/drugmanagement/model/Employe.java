@@ -33,6 +33,10 @@ public class Employe  {
     public Employe (Credencial credencial){
         this.credencial = credencial;
     }
+    public Employe (int id , EnumTypeEmploye typeEmploye) {
+        this.typeEmploye = typeEmploye;
+        this.id = id;
+    }
 
     public Employe(String prenom, String nom) {
         this.prenom = prenom;

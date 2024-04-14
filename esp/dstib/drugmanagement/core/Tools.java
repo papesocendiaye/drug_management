@@ -26,6 +26,11 @@ public class Tools {
         Scanner sc = new Scanner (System.in);
         return sc.nextLine();
     }
+    public static int inputId(String message) {
+        System.out.print(message);
+        Scanner sc = new Scanner (System.in);
+        return sc.nextInt();
+    }
 
 
     public static void print (String message) {

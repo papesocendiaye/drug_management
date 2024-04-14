@@ -6,7 +6,6 @@ import esp.dstib.drugmanagement.model.Employe;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class EmployeStore {
 
@@ -17,7 +16,7 @@ public class EmployeStore {
     }
 
     public List<Employe> selectAll () throws Exception {
-        String sql="SELECT id, firstname, lastname FROM "+this.bdName;
+        String sql="SELECT id, firstname, lastname FROM "+ this.bdName;
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         List<Employe> employes = new ArrayList<>();

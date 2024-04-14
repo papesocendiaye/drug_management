@@ -61,8 +61,9 @@ CREATE TABLE drug_order (
 
 
 /* INSERTS */
-INSERT INTO employe(firstname, lastname, type) VALUES ('RAMA', 'FAYE' , 'MANAGER' );
-INSERT employe (firstname, lastname) VALUES ("Socket", "Gning");
+INSERT INTO employe(firstname, lastname, type, to_id_credential) VALUES ('RAMA', 'FAYE' , 'MANAGER',1 );
+INSERT employe (firstname, lastname,to_id_credential) VALUES ("Socket", "Gning",2);
+INSERT employe (firstname, lastname,to_id_credential) VALUES ("Soxna", "sall",3);
 INSERT drug (title, price, stock) VALUES ("DOLIPRANE", "905", "300");
 INSERT INTO drug(title, price) VALUES ("Paracétamol", "1315,00");
 

@@ -82,5 +82,18 @@ import java.util.List;
                 Tools.print("Erreur lors de la supression de "+id+".\nCause :"+e.getMessage());
             }
     }
+    public static void main(String[] args) {
+        DrugManagement drugManagement = new DrugManagement();
+        Tools.print("ajouter un medicament");
+        drugManagement.createDrug();
+        drugManagement.modifyDrug();
+        drugManagement.removeDrug();
+       // sokhna  sall essaies cette commande =  javac esp/dstib/drugmanagement/core/DrugManagement.java  
+       //puis celle ci = java -cp mysql-connector-java-8.0.30.jar;. esp.dstib.drugmanagement.core.DrugManagement 
+        // en mode cmd
+        
+
+
+    }
     
 }

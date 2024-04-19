@@ -4,6 +4,8 @@ USE drugstore;
 
 CREATE TABLE client (
     id INT AUTO_INCREMENT,
+    firstName VARCHAR(255),
+    lastName VARCHAR(255),
     CONSTRAINT PK_client PRIMARY KEY (id)
 );
 
@@ -37,16 +39,11 @@ CREATE TABLE `order` (
 
 CREATE TABLE drug (
     id INT AUTO_INCREMENT ,
-    title VARCHAR(100), 
+    title VARCHAR(100),
+    price DECIMAL(10, 2),
+    stock INT,
     CONSTRAINT PK_medicament PRIMARY KEY (id)
 );
---ajouter la colonne price a la table drug
-ALTER TABLE drug
-ADD price DECIMAL(10, 2) NOT NULL;
---ajouter la colonne stock a la table drug
-ALTER TABLE drug
-ADD stock INT NOT NULL;
-
 
 CREATE TABLE drug_order (
     to_id_drug INT,
@@ -61,9 +58,12 @@ CREATE TABLE drug_order (
 
 
 /* INSERTS */
-INSERT INTO employe(firstname, lastname, type, to_id_credential) VALUES ('RAMA', 'FAYE' , 'MANAGER',1 );
-INSERT employe (firstname, lastname,to_id_credential) VALUES ("Socket", "Gning",2);
-INSERT employe (firstname, lastname,to_id_credential) VALUES ("Soxna", "sall",3);
-INSERT drug (title, price, stock) VALUES ("DOLIPRANE", "905", "300");
-INSERT INTO drug(title, price) VALUES ("Paracétamol", "1315,00");
+INSERT INTO credential(id, login, password) VALUES (1, 'lord' , 'passer' );
+INSERT INTO credential(id, login, password) VALUES (2, 'soce' , 'passer' );
+INSERT INTO credential(id, login, password) VALUES (3, 'soxna' , 'passer' );
 
+INSERT INTO employe(firstname, lastname, type, to_id_credential) VALUES ('Rama', 'Faye' , 'MANAGER',1 );
+INSERT INTO employe (firstname, lastname, to_id_credential) VALUES ('Socket', 'Gning', 2);
+INSERT INTO employe (firstname, lastname, to_id_credential) VALUES ('Soxna', 'Sall', 3);
+INSERT INTO drug (title, price, stock) VALUES ('DOLIPRANE', 905, 300);
+INSERT INTO drug(title, price, stock) VALUES ('Paracétamol', 1315, 100);

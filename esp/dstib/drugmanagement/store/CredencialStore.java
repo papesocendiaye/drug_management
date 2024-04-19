@@ -51,9 +51,12 @@ public class CredencialStore {
 
     public Credencial insert (Credencial credencial) throws Exception {
         String sql = "INSERT INTO "+this.bdName+" (id,login, password) VALUES ('"+credencial.getId()+"','"+credencial.getLogin()+"', '"+credencial.getPassword()+"')";
+
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.executeUpdate();
-        return new Credencial(credencial.getId(), credencial.getLogin(), credencial.getPassword() );
+        ResultSet generatedKeys = statement.getGeneratedKeys();
+        generatedKeys.next();
+        return new Credencial(generatedKeys.getInt(1), credencial.getLogin(), credencial.getPassword() );
     }
 
     public Credencial update (Credencial credencial) throws Exception {

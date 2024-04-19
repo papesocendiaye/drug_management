@@ -2,30 +2,33 @@ package esp.dstib.drugmanagement.controllers;
 import esp.dstib.drugmanagement.core.CredentialManagement;
 import esp.dstib.drugmanagement.core.EmployeManagement;
 import esp.dstib.drugmanagement.menus.MenuManager;
+import esp.dstib.drugmanagement.model.Credencial;
+import esp.dstib.drugmanagement.model.Employe;
 
 public class ManagerController {
 
 
     private final static EmployeManagement employeManagement = new EmployeManagement();
-    private final static CredentialManagement credencial = new CredentialManagement();
+    private final static CredentialManagement credencialMangement = new CredentialManagement();
 
-    public static void manage () {
+    public static void manage (Employe employe) {
         boolean isLoged = true;
         while (isLoged) {
             
-            Integer choice = MenuManager.showMainMenu();
+            Integer choice = MenuManager.showMainMenu(employe);
             switch (choice) {
                 case 1:
-                    employeManagement.createEmploye();
-                    credencial.createCredencial();
+                    Credencial credencial = credencialMangement.createCredencial();
+
+                    employeManagement.createEmploye(credencial);
                     break;
                 case 2:
                     employeManagement.modifyEmploye();
-                    credencial.modifyCredencials();
+                    credencialMangement.modifyCredencials();
                     break;
                  case 3:
                     employeManagement.removeEmploye();
-                    credencial.removeCredencial();
+                    credencialMangement.removeCredencial();
                     break;   
                 case 4:
                     isLoged = false;

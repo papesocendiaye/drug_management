@@ -1,4 +1,5 @@
 package esp.dstib.drugmanagement.core;
+import esp.dstib.drugmanagement.model.Credencial;
 import esp.dstib.drugmanagement.model.Employe;
 import esp.dstib.drugmanagement.store.EmployeStore;
 import java.util.List;
@@ -10,11 +11,11 @@ public class EmployeManagement {
         this.employeStore = new EmployeStore();
     }
 
-    public Employe createEmploye () {
-        String lastName =  Tools.inputLastname("Veuillez saisir le nom de l'employé    : ");
-        
-        String firstName = Tools.inputFirstname("Veuillez saisir le prenom de l'employé : ");
+    public Employe createEmploye (Credencial credencial) {
+        String lastName =  Tools.input("Veuillez saisir le nom de l'employé    : ");
+        String firstName = Tools.input("Veuillez saisir le prénom de l'employé : ");
         Employe employe = new Employe(firstName, lastName);
+        employe.setCredencial(credencial);
         try {
             return this.employeStore.insert(employe);
         } catch (Exception e) {

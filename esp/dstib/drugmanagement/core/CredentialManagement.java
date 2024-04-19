@@ -6,70 +6,66 @@ import esp.dstib.drugmanagement.enums.EnumTypeEmploye;
 import esp.dstib.drugmanagement.model.Credencial;
 import esp.dstib.drugmanagement.model.Employe;
 import esp.dstib.drugmanagement.store.CredencialStore;
+import esp.dstib.drugmanagement.store.EmployeStore;
 
 public class CredentialManagement {
     private final CredencialStore credentialStore;
+    private final EmployeStore employeStore;
 
     public CredentialManagement() {
         this.credentialStore = new CredencialStore();
+        this.employeStore = new EmployeStore();
     }
- 
+
+
+    public Employe checkCredentials () throws Exception {
+        String login = Tools.input   ("Nom d'utilisateur : ");
+        String password = Tools.input("Mot de passe      : ");
+
+        List<Credencial> credencials = this.credentialStore.selectByKey("login", login);
+        if ( credencials.size() == 1 ) {
+            Credencial credencial = credencials.get(0);
+            if ( credencial.getPassword().equals(password)
+                    &&
+                    credencial.getLogin().equals(login)
+            ) {
+                List<Employe> employes = this.employeStore.selectByKey("to_id_credential", String.valueOf(credencial.getId()) );
+                if ( employes.size() == 1 ) {
+                    return employes.get(0);
+                }else {
+                    throw new Exception("Employe not exist");
+                }
+            }else {
+                throw new Exception("Credencials not match");
+            }
+        }else {
+            throw new Exception("Credencials not match");
+        }
+    }
    
 
-public void verifyEmploye() {
-    int id = Tools.inputId("Veuillez saisir votre ID pour identification : ");
-    boolean isEmploye = false;
+public void verifyEmploye() throws Exception {
 
+    Employe employe = this.checkCredentials();
+    Boolean isEmploye = true;
 
-
-    try {
-        Employe employe = this.credentialStore.selectType(id);
-        if (employe != null) {
-            EnumTypeEmploye typeEmploye = employe.getTypeEmploye();
-            if (typeEmploye == EnumTypeEmploye.MANAGER) {
-                System.out.println("Vous êtes un manager.");
-            } else {
-                System.out.println("Vous êtes un employé.");
-                isEmploye = true;
-            }
-
-            // Demander le login et le mot de passe
-            Tools.print("Connexion ");
-            String login = "";
-            String password =  "";
-             // Vérifier le login et le mot de passe
-             boolean mdpCorrect=false;
-             while (!mdpCorrect) {
-                 login = Tools.input("Nom d'utilisateur : ");
-                 password =  Tools.input("Mot de passe      : ");
-             Credencial credencial= this.credentialStore.selectCredencial(id);
-            if (login.equals(credencial.getLogin()) && password.equals(credencial.getPassword())) {
-                System.out.println("Login et mot de passe corrects.");
-                mdpCorrect = true;
-            } else {
-                System.out.println("Login ou mot de passe incorrect.");
-            }
-        }
-        if (isEmploye) {
-            EmployeController.manage();
-        }else {
-            ManagerController.manage();
-        }
-        } 
-        else {
-            System.out.println("Employé introuvable.");
-        
+    EnumTypeEmploye typeEmploye = employe.getTypeEmploye();
+    if (typeEmploye == EnumTypeEmploye.MANAGER) {
+        isEmploye = false;
     }
-    } catch (Exception e) {
-        throw new RuntimeException(e);
+
+    if (isEmploye) {
+        EmployeController.manage(employe);
+    }else {
+        //TODO
+        ManagerController.manage(employe);
     }
 }
 
 public Credencial createCredencial () {
-    int id =  Tools.inputId("Veuillez L'id correspondant a l'id de l'employe   : ");
     String login = Tools.input("Veuillez saisir le login de l'employé : ");
     String password = Tools.input("Veuillez saisir le mot de passe de l'employé : ");
-    Credencial credencial = new Credencial(id,login,password);
+    Credencial credencial = new Credencial(login,password);
     try {
         return this.credentialStore.insert(credencial);
     } catch (Exception e) {

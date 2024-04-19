@@ -1,5 +1,5 @@
 package esp.dstib.drugmanagement.model;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class Order {
@@ -8,10 +8,13 @@ public class Order {
     private float amount;
     private Client client;
     private Employe employe;
-    private List<String> drugOrders;
+    private List<Drug> drugOrders;
 
-   
-    public Order(int id, Date date, float amount, Client client, Employe employee) {
+   public Order () {
+
+   }
+
+    public Order(int id, Date date, Client client, Employe employee) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -19,16 +22,15 @@ public class Order {
         this.employe = employee;
     }
 
-    public Order(Date date, float amount, Client client, Employe employee) {
+    public Order(Date date, Client client, Employe employee) {
         this.date = date;
-        this.amount = amount;
         this.client = client;
         this.employe = employee;
         
     }
 
     
-    public Order(int id, Date date, float amount, Client client, Employe employee, List<String> drugOrders) {
+    public Order(int id, Date date, float amount, Client client, Employe employee, List<Drug> drugOrders) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -50,9 +52,9 @@ public class Order {
     public void setId(int id) { 
         this.id = id;
         }
-    public  Date getDate() {
+    public Date getDate() {
         return date;
-        }
+    }
     public void setDate(Date date) {  
         this.date = date;
         }
@@ -71,5 +73,24 @@ public class Order {
     public Employe getEmployee(){
          return employe;
     }
-        
+
+    public Employe getEmploye() {
+        return employe;
+    }
+
+    public void setEmploye(Employe employe) {
+        this.employe = employe;
+    }
+
+    public List<Drug> getDrugOrders() {
+        return drugOrders;
+    }
+
+    public void setDrugOrders(List<Drug> drugOrders) {
+        this.drugOrders = drugOrders;
+    }
+
+//    public Double calculateAmout () {
+//
+//    }
 }

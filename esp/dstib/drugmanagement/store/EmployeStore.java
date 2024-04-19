@@ -1,5 +1,6 @@
 package esp.dstib.drugmanagement.store;
 import esp.dstib.drugmanagement.config.ConnectionDB;
+import esp.dstib.drugmanagement.core.Tools;
 import esp.dstib.drugmanagement.enums.EnumTypeEmploye;
 import esp.dstib.drugmanagement.model.Employe;
 
@@ -66,7 +67,7 @@ public class EmployeStore {
     }
 
     public Employe insert (Employe employe) throws Exception {
-        String sql = "INSERT INTO "+this.bdName+" (firstname, lastname) VALUES ('"+employe.getPrenom()+"', '"+employe.getNom()+"')";
+        String sql = "INSERT INTO "+this.bdName+" (firstname, lastname, to_id_credential) VALUES ('"+employe.getPrenom()+"', '"+employe.getNom()+"', "+employe.getCredencial().getId()+")";
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.executeUpdate();
         ResultSet generatedKeys = statement.getGeneratedKeys();

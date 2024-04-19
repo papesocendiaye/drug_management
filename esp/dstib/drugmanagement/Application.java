@@ -1,33 +1,28 @@
 package esp.dstib.drugmanagement;
 import esp.dstib.drugmanagement.core.CredentialManagement;
+import esp.dstib.drugmanagement.core.EmployeManagement;
+import esp.dstib.drugmanagement.core.Tools;
 
 public class Application {
     public static void main (String[] strings) {
         //verification and authentification
-        CredentialManagement credentialManagement = new CredentialManagement();
-        credentialManagement.verifyEmploye();
-    }
-
-       
 
 
+        while (true) {
+
+            CredentialManagement credentialManagement = new CredentialManagement();
+
+            try {
+                credentialManagement.verifyEmploye();
+
+            } catch (Exception e) {
+//                System.out.println(e.getMessage());
+                throw new RuntimeException(e);
+            }
+
+        }
 
 
-//        try {
-//            Boolean result = employeManagement.verifyEmploye();
-//
-//            if (result) {
-//                Tools.print("C'est un employé");
-//            }else {
-//                Tools.print("C'est un manager");
-//
-//            }
-//
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-
-//
 //                employeManagement.createEmploye();
 //                Tools.print("~modifier~" + "\n");
 //
@@ -42,7 +37,8 @@ public class Application {
 //             Tools.print("~supprimer~\n");
 //
 //             drugManagement.removeDrug();
-//
-       
+
+
     }
+}
 

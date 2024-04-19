@@ -74,5 +74,7 @@ public class Employe  {
     public EnumTypeEmploye getTypeEmploye() {
         return this.typeEmploye;
     }
+
+    public Credencial getCredencial () {return this.credencial;}
 }
 

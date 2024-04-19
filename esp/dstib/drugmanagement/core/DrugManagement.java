@@ -1,6 +1,8 @@
 package esp.dstib.drugmanagement.core;
 import esp.dstib.drugmanagement.model.Drug;
 import esp.dstib.drugmanagement.store.DrugStore;
+
+import java.sql.SQLException;
 import java.util.List;
     
     
@@ -8,6 +10,20 @@ import java.util.List;
         private final DrugStore drugStore;
         public DrugManagement() {
             this.drugStore = new DrugStore();
+        }
+
+        public Drug selectDrug () throws SQLException {
+            List<Drug> drugs = this.drugStore.getAll();
+            for ( int i=1; i<=drugs.size(); i++ ) {
+                Tools.print(i+") "+drugs.get(i-1).getTitle());
+            }
+
+            int choice;
+            do {
+                choice = Integer.valueOf( Tools.input("> ") );
+            }while (choice < 1 || choice > drugs.size());
+
+            return drugs.get(choice-1);
         }
     
         public Drug createDrug () {
@@ -82,18 +98,18 @@ import java.util.List;
                 Tools.print("Erreur lors de la supression de "+id+".\nCause :"+e.getMessage());
             }
     }
-    public static void main(String[] args) {
-        DrugManagement drugManagement = new DrugManagement();
-        Tools.print("ajouter un medicament");
-        drugManagement.createDrug();
-        drugManagement.modifyDrug();
-        drugManagement.removeDrug();
-       // sokhna  sall essaies cette commande =  javac esp/dstib/drugmanagement/core/DrugManagement.java  
-       //puis celle ci = java -cp mysql-connector-java-8.0.30.jar;. esp.dstib.drugmanagement.core.DrugManagement 
-        // en mode cmd
-        
-
-
-    }
+//    public static void main(String[] args) {
+//        DrugManagement drugManagement = new DrugManagement();
+//        Tools.print("ajouter un medicament");
+//        drugManagement.createDrug();
+//        drugManagement.modifyDrug();
+//        drugManagement.removeDrug();
+//       // sokhna  sall essaies cette commande =  javac esp/dstib/drugmanagement/core/DrugManagement.java
+//       //puis celle ci = java -cp mysql-connector-java-8.0.30.jar;. esp.dstib.drugmanagement.core.DrugManagement
+//        // en mode cmd
+//
+//
+//
+//    }
     
 }

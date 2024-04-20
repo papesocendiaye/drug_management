@@ -1,35 +1,51 @@
 package esp.dstib.drugmanagement.core;
 import esp.dstib.drugmanagement.model.Client;
+import esp.dstib.drugmanagement.model.Drug;
 import esp.dstib.drugmanagement.model.Employe;
 import esp.dstib.drugmanagement.model.Order;
-import esp.dstib.drugmanagement.store.ClientStore;
 import esp.dstib.drugmanagement.store.OrderStore;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-    
-    
-    public class OrderManagement {
+import java.util.*;
+
+
+public class OrderManagement {
         private final OrderStore orderStore;
         private final ClientManager clientManager;
         private final Employe connectedEmploye;
+        private final DrugManagement drugManagement;
         public OrderManagement( Employe employe ) {
             this.clientManager = new ClientManager();
             this.orderStore = new OrderStore();
             this.connectedEmploye = employe;
+            this.drugManagement = new DrugManagement();
         }
     
-        public Order createOrder () throws Exception {
+        public void createOrder () throws Exception {
     
             Date date_order = new Date();
             Client new_client = clientManager.createClient();
 
-            Order order = new Order(date_order, new_client, connectedEmploye );
+            Tools.print("cc");
+            //GET DRUGS
+            int amount = 0;
+
+            //List<Map<String, Object>> drugsMap = new ArrayList<>();
+            for ( int i=0; i<Integer.valueOf( Tools.input("Nombre de médicaments: ") ); i++ ) {
+
+                Drug drug = this.drugManagement.selectDrug();
+                int quantity = Integer.valueOf( Tools.input("Quantité: ") );
+
+                amount += drug.getPrice() * quantity;
+            }
+
+            Tools.print("Quantite "+amount);
+
+            Order order = new Order( date_order, new_client, connectedEmploye );
             try {
-                return this.orderStore.insert(order);
+
+                //this.orderStore.insert(order);
             } catch (Exception e) {
+
                 throw new RuntimeException(e);
             }
             

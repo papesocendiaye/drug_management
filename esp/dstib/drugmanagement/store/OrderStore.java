@@ -81,6 +81,7 @@ public class OrderStore {
 
 
 
+
 //    public Order insert(Order order) throws SQLException {
 //        String sql = "INSERT INTO " + this.dbName + " (date, amount, client, to_id_employe) VALUES (?, ?, ?, ?)";
 //        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {

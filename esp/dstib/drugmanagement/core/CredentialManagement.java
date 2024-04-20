@@ -4,6 +4,7 @@ import esp.dstib.drugmanagement.controllers.EmployeController;
 import esp.dstib.drugmanagement.controllers.ManagerController;
 import esp.dstib.drugmanagement.enums.EnumTypeEmploye;
 import esp.dstib.drugmanagement.model.Credencial;
+import esp.dstib.drugmanagement.model.Drug;
 import esp.dstib.drugmanagement.model.Employe;
 import esp.dstib.drugmanagement.store.CredencialStore;
 import esp.dstib.drugmanagement.store.EmployeStore;
@@ -58,7 +59,7 @@ public void verifyEmploye() throws Exception {
         EmployeController.manage(employe);
     }else {
         //TODO
-        ManagerController.manage(employe);
+        ManagerController.menu(employe);
     }
 }
 
